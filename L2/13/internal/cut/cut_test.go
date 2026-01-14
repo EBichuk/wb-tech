@@ -42,19 +42,19 @@ func TestParseFields(t *testing.T) {
 		{
 			name:    "borderline: numbers are in the wrong range (end < strart)",
 			args:    args{fields: "4-2"},
-			want:    []int{},
+			want:    nil,
 			wantErr: false,
 		},
 		{
 			name:    "error: with zero",
 			args:    args{fields: "0,2"},
-			want:    []int{},
+			want:    nil,
 			wantErr: true,
 		},
 		{
 			name:    "error: with letters",
 			args:    args{fields: "1-o"},
-			want:    []int{},
+			want:    nil,
 			wantErr: true,
 		},
 	}
