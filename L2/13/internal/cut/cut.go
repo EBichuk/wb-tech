@@ -3,10 +3,16 @@ package cut
 import (
 	"bufio"
 	"cut/internal/config"
+	"errors"
 	"fmt"
 	"io"
 	"strconv"
 	"strings"
+)
+
+var (
+	ErrZeroValue        = errors.New("values may not include zero")
+	ErrIllegalListValue = errors.New("illegal list value")
 )
 
 type Cut struct {
@@ -50,10 +56,10 @@ func (c *Cut) DoCut() error {
 
 func ParseFields(fields string) ([]int, error) {
 	if strings.Contains(fields, "0") {
-		return []int{}, fmt.Errorf("values may not include zero")
+		return nil, ErrZeroValue
 	}
 
-	resFields := make([]int, 0)
+	var resFields []int
 
 	parts := strings.Split(fields, ",")
 
@@ -63,11 +69,11 @@ func ParseFields(fields string) ([]int, error) {
 			if len(ranges) == 2 {
 				start, err := strconv.Atoi(ranges[0])
 				if err != nil {
-					return []int{}, fmt.Errorf("illegal list value %v", err)
+					return nil, ErrIllegalListValue
 				}
 				end, err := strconv.Atoi(ranges[1])
 				if err != nil {
-					return []int{}, fmt.Errorf("illegal list value %v", err)
+					return nil, ErrIllegalListValue
 				}
 
 				for i := start; i <= end; i++ {
@@ -77,7 +83,7 @@ func ParseFields(fields string) ([]int, error) {
 		} else {
 			num, err := strconv.Atoi(p)
 			if err != nil {
-				return []int{}, fmt.Errorf("illegal list value %v", err)
+				return nil, ErrIllegalListValue
 			}
 			resFields = append(resFields, num)
 		}
