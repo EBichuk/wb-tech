@@ -1,0 +1,42 @@
+version: "2"
+run:
+  tests: false
+linters:
+  enable:
+    - asasalint
+    - bodyclose
+    - dogsled
+    - dupl
+    - durationcheck
+    - err113
+    - errorlint
+    - exhaustive
+    - forbidigo
+    - gocognit
+    - goconst
+    - gocritic
+    - gocyclo
+    - godot
+    - godox
+    - goprintffuncname
+    - gosec
+    - importas
+    - lll
+    - makezero
+    - misspell
+    - nakedret
+    - nestif
+    - nolintlint
+    - prealloc
+    - predeclared
+    - rowserrcheck
+    - sqlclosecheck
+    - staticcheck
+    - testpackage
+    - thelper
+    - tparallel
+    - unparam
+    - wastedassign
+    - zerologlint
+  disable:
+    - wrapcheck
