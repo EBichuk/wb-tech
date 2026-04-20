@@ -1,0 +1,48 @@
+version: "2"  
+
+run: 
+  timeout: 5m  
+  relative-path-mode: gomod  
+  issues-exit-code: 1  
+  tests: true  
+
+output: 
+  formats:
+    text:
+      print-linter-name: true 
+      print-issued-lines: true 
+      colors: true  
+
+issues: 
+  max-issues-per-linter: 0  
+  max-same-issues: 0  
+  uniq-by-line: true 
+
+linters: 
+  default: standard  
+  enable: 
+    - errcheck        
+    - staticcheck     
+    - govet           
+    - gocritic        
+    - revive          
+    - unused         
+    - gosec                
+    - bodyclose       
+    - asciicheck     
+    - cyclop          
+    - dupl           
+    - ineffassign    
+    - unparam        
+    - errorlint       
+    - errname         
+    - forbidigo      
+    - contextcheck   
+    - containedctx    
+  disable:
+    - gocyclo  
+    - lll     
+
+settings: 
+  revive:
+    severity: warning
